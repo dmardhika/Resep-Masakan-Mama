@@ -22,13 +22,4 @@
             android:title="Dessert" />
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_launch_black_24dp"
-                android:title="Login"/>
-        </menu>
-    </item>
-
 </menu>
