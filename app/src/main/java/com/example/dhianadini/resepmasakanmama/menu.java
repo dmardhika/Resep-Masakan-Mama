@@ -1,5 +1,7 @@
 package com.example.dhianadini.resepmasakanmama;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -15,46 +17,31 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
-public class menu extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-    GridView gridAll;
+public class menu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        gridAll = (GridView) findViewById(R.id.gridAll);
-//        gridAll.setAdapter(new AdapterAll(this));
-//
-//        gridAll.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(menu.this, DetailResep.class);
-//                intent.putExtra("posisi", position);
-//                startActivity(intent);
-//            }
-//        });
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-////        fab.setOnClickListener(new View.OnClickListener() {
-////            @Override
-////            public void onClick(View view) {
-////                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-////                        .setAction("Action", null).show();
-////            }
-////        });
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        if(savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AllRecipesFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_allrecipes);
+        }
     }
 
     @Override
@@ -83,9 +70,9 @@ public class menu extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Toast.makeText(getApplicationContext(), "Action Settings", Toast.LENGTH_SHORT).show();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -93,18 +80,23 @@ public class menu extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_favorit) {
-            // Handle the camera action
-        } else if (id == R.id.nav_makanan) {
-
-        } else if (id == R.id.nav_minuman) {
-
-        } else if (id == R.id.nav_dessert) {
-
+        switch (item.getItemId()){
+            case R.id.nav_allrecipes:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AllRecipesFragment()).commit();
+                break;
+            case R.id.nav_favorit:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FavoritFragment()).commit();
+                break;
+            case R.id.nav_makanan:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MakananFragment()).commit();
+                break;
+            case R.id.nav_minuman:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MinumanFragment()).commit();
+                break;
+            case R.id.nav_dessert:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DessertFragment()).commit();
+                break;
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

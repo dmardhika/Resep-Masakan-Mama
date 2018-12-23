@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
 //        //menghilangkan ActionBar
 //        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_main);
+//        setContentView(R.layout.activity_main);
 
         tvSplash = (TextView) findViewById(R.id.tvSplash);
 
