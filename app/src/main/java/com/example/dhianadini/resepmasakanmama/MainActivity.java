@@ -25,9 +25,9 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(getApplicationContext(), menu.class));
+                startActivity(new Intent(getApplicationContext(), welcome.class));
                 finish();
             }
-        }, 3000L); //3000 L = 3 detik
+        }, 2000L); //2000 L = 2 detik
     }
 }

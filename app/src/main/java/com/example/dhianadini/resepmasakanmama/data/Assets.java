@@ -3,6 +3,7 @@ package com.example.dhianadini.resepmasakanmama.data;
 import java.util.ArrayList;
 import java.util.List;
 import com.example.dhianadini.resepmasakanmama.R;
+import com.example.dhianadini.resepmasakanmama.ResepListAdapter;
 
 public class Assets {
 
@@ -57,4 +58,27 @@ public class Assets {
     public static List<Integer> getAll() {
         return all;
     }
+//    private int ImageId;
+//    private String title;
+//
+//    public Assets(int ImageId, String title){
+//        this.ImageId = ImageId;
+//        this.title = title;
+//    }
+//
+//    public int getImageId() {
+//        return ImageId;
+//    }
+//
+//    public void setImageId(int imageId) {
+//        ImageId = imageId;
+//    }
+//
+//    public String getTitle() {
+//        return title;
+//    }
+//
+//    public void setTitle(String title) {
+//        this.title = title;
+//    }
 }
